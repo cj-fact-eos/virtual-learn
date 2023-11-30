@@ -34,4 +34,27 @@ for i in vocab:
 # the below printed are unique characters that Neural Network will consume as token 
 print(uniqueCharacters)
 
+# Vectorize the text 
+# i.e. Before training, you need to convert the string to a numerical representation 
+# to do so we will use tf.keras.layers.StringLookup 
+# it converts each characters into a numeric ID. It just needs the text to be split into token first.
+
+example_text = ["abcdefghijklmnop",'xyz']
+chars = tf.strings.unicode_split(example_text, input_encoding="UTF-8")
+print(chars)
+
+ids_from_chars = tf.keras.layers.StringLookup(
+    vocabulary=list(vocab), mask_token=None
+)
+
+ids = ids_from_chars(chars)
+print(ids)
+
+chars_from_ids = tf.keras.layers.StringLookup(
+    vocabulary=ids_from_chars.get_vocabulary(), invert=True, mask_token=None
+)
+
+chars = chars_from_ids(ids)
+print(chars)
+
 
