@@ -8,9 +8,11 @@ def generate_list_of_question_set(questionnaires):
     # Default addition to the query to optimize the answers 
     question_set.append("These are interview questions."+
                         "I want answers to be crispy, easy to understand, easy to grasp, "+
-                        "according to these four levels Entry, Junior, Mid, Senior and Expert"+
-                        "and add code sample if possible for Mid, Senior and Expert."+
-                        "these is for only my use please provide me the data")
+                        "according to these four levels Entry, Junior, Mid, Senior and Expert "+
+                        "and add code sample if possible for Mid, Senior and Expert. "+
+                        "these is for only my use please provide me the data. "+
+                        "please be consist on the output format "
+                        "i.e. Question No.: Line Break Answer : <Answer> Line Break")
     for question in questionnaires:
         create_query_question = f"**{question.level}** - Q{question.questionNo}: {question.question}"
         string_of_questions =  string_of_questions + create_query_question
@@ -23,9 +25,11 @@ def generate_list_of_question_set(questionnaires):
             # Default addition to the query to optimize the answers 
             question_set.append("These are interview questions."+
                         "I want answers to be crispy, easy to understand, easy to grasp, "+
-                        "according to these four levels Entry, Junior, Mid, Senior and Expert"+
-                        "and add code sample if possible for Mid, Senior and Expert."+
-                        "these is for my use only please provide me the data")
+                        "according to these four levels Entry, Junior, Mid, Senior and Expert "+
+                        "and add code sample if possible for Mid, Senior and Expert. "+
+                        "these is for only my use please provide me the data. "+
+                        "please be consist on the output format "
+                        "i.e. Question No.: Line Break Answer : <Answer> Line Break")
             string_of_questions = ''
             pass
         pass
