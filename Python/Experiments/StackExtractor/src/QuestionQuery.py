@@ -9,4 +9,5 @@ class QuestionQuery:
         self.level = level
 
     def __str__(self):
-        return f"Q{self.questionNo}: {self.question}({self.level})"
+        return f"**{self.level}** - Q{self.questionNo}: {self.question}"
+

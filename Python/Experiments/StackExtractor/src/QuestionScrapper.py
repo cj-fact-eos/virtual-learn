@@ -58,7 +58,7 @@ def question_level_extractor(url):
     driver.quit()
     return questionnaires
 
-question_list = question_level_extractor('https://www.fullstack.cafe/interview-questions/spring')
-for question in question_list:
-    print(f"Q{question.questionNo}: {question.question}({question.level}")
-    pass
+# question_list = question_level_extractor('https://www.fullstack.cafe/interview-questions/spring')
+# for question in question_list:
+#     print(f"**{question.level}** - Q{question.questionNo}: {question.question}")
+#     pass
