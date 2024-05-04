@@ -1,3 +1,4 @@
+from urllib.parse import urlparse
 
 def generate_google_json_data(generated_string):
     text_json = []
@@ -24,3 +25,15 @@ def save_to_file(fileName, content):
     with open(fileName, "w") as file:
     # Write your content to the file
         file.write(content)
+        
+def extract_the_last_path(url):
+    # Parse the URL
+    parsed_url = urlparse(url)
+
+    try:
+        # Extract the last path element (test2)
+        last_option = parsed_url.path.split("/")[-1]
+        return last_option
+    except:  # Catch specific or general exception types
+        # Code to handle the exception
+        return ''
