@@ -1,5 +1,6 @@
 from dotenv import load_dotenv
 import os
+from ProcessTxtToHtml import ProcessTxtToQuestionAnswerList
 from QueryGoogleApi import query_google_api
 from QueryGoogleApi import extract_text_from_response
 import QuestionScrapper
@@ -23,14 +24,16 @@ if url:
     current_time = datetime.datetime.now()
     time_string = current_time.strftime("%H%M%S")
     if  pdf_txt_fileName == '':
-        pdf_txt_fileName = 'output_file'+time_string
+        pdf_txt_fileName = 'output_file'+"_"+time_string
         pass
     else:
-        pdf_txt_fileName = pdf_txt_fileName+time_string
+        pdf_txt_fileName = pdf_txt_fileName+"_"+time_string
         pass
-    
+
     questionnaires = QuestionScrapper.question_level_extractor(url)
+
     list_of_question_set = QuestionProcessor.generate_list_of_question_set(questionnaires)
+    print(list_of_question_set)
 
     total_sets = len(list_of_question_set) 
     time_taken = round(((total_sets * 25) + 25)/60, 2);
@@ -45,7 +48,7 @@ if url:
                 print('we are processing.. wait time of 25 sec begin..')
                 time.sleep(25)
             pass
-            
+
             output = output + extract_text_from_response(
                                 query_google_api(
                                     Utils.generate_google_json_data(list_of_question_set[index]),
@@ -53,7 +56,10 @@ if url:
             print( Utils.word_calculator(output))
             index += 1
 
-        Utils.save_to_file(f"outputDir/{pdf_txt_fileName}.txt", output)
+        fileName_path = f"outputDir/{pdf_txt_fileName}.txt"
+        Utils.save_to_file(fileName_path, output)
+
+        question_answers = ProcessTxtToQuestionAnswerList(fileName_path)
     pass
 pass
 
