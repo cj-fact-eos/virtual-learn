@@ -22,7 +22,7 @@ def word_calculator(text):
 
 def save_to_file(fileName, content):
     # Open a file for writing (will overwrite existing content)
-    with open(fileName, "w") as file:
+    with open(fileName, "w", encoding="utf-8") as file:
     # Write your content to the file
         file.write(content)
         

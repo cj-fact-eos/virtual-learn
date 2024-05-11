@@ -27,12 +27,13 @@ def extract_text_from_response(response):
     data = json.loads(response)  # Convert JSON string to a Python dictionary
 
     text_part= ''
-    
-    # Access the text content within the first candidate (index 0)
-    if data["candidates"][0]:        
-        if data["candidates"][0]["content"]:
-            text_part = data["candidates"][0]["content"]["parts"][0]["text"]
 
-    # Print the extracted text
-    # print(text_part)
+    # Access the text content within the first candidate (index 0)
+    if data["candidates"][0]:
+        content = data.get("candidates", [])[0].get("content", "NO_CONTENT")
+        if content != "NO_CONTENT":
+            text_part = data["candidates"][0]["content"]["parts"][0]["text"]
+        else:
+            print("Fail to retrieve")
+
     return text_part

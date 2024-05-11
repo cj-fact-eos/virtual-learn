@@ -12,12 +12,14 @@ class QuestionQuery:
         return f"**{self.level}** - Q{self.questionNo}: {self.question}"
 
 class QuestionFormat:
+    QuestionNo = 0
     Question = '' # Public by default, but convention suggests internal use
     Answer = ''
     Level = ''
     CodeSample = ''
 
-    def __init__(self, question, answer, level = '', codeSample = ''):
+    def __init__(self, questionNo, question, answer, level = '', codeSample = ''):
+        self.QuestionNo = questionNo
         self.Question = question
         self.Answer = answer
         self.Level = level

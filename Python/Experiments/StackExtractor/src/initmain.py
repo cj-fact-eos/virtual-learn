@@ -33,10 +33,10 @@ if url:
     questionnaires = QuestionScrapper.question_level_extractor(url)
 
     list_of_question_set = QuestionProcessor.generate_list_of_question_set(questionnaires)
-    print(list_of_question_set)
 
     total_sets = len(list_of_question_set) 
     time_taken = round(((total_sets * 25) + 25)/60, 2);
+    print(f"Total question set to be processed {total_sets} with {len(questionnaires)} question(s).")
     print(f"Total time taken will be {(time_taken)} mins.")
 
     if total_sets > 0:
@@ -48,11 +48,13 @@ if url:
                 print('we are processing.. wait time of 25 sec begin..')
                 time.sleep(25)
             pass
-
-            output = output + extract_text_from_response(
+            extract_output = extract_text_from_response(
                                 query_google_api(
                                     Utils.generate_google_json_data(list_of_question_set[index]),
                                     api_key))
+            Utils.save_to_file(f"outputDir/{index}_{ datetime.datetime.now().strftime("%H%M%S")}",
+                            output)
+            output = output + "\n\n" + extract_output
             print( Utils.word_calculator(output))
             index += 1
 
