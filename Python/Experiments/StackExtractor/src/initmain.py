@@ -53,7 +53,7 @@ if url:
                                     Utils.generate_google_json_data(list_of_question_set[index]),
                                     api_key))
             Utils.save_to_file(f"outputDir/{index}_{ datetime.datetime.now().strftime("%H%M%S")}",
-                            output)
+                            extract_output)
             output = output + "\n\n" + extract_output
             print( Utils.word_calculator(output))
             index += 1
