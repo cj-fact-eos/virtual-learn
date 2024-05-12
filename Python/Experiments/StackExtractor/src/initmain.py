@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 import os
-from HtmlProcessor import create_html
+from HtmlProcessor import create_html, create_pdf
 from ProcessTxtToHtml import ProcessTxtToQuestionAnswerListV2, convert_to_formatted_divs
 from QueryGoogleApi import query_google_api
 from QueryGoogleApi import extract_text_from_response
@@ -65,10 +65,7 @@ if url:
 
         question_answers = ProcessTxtToQuestionAnswerListV2(fileName_path)
         formatted_div = convert_to_formatted_divs(question_answers)
-        create_html(title, formatted_div, pdf_txt_fileName)
+        html_path = create_html(title, formatted_div, pdf_txt_fileName)
+        create_pdf(html_path, title)
     pass
-pass
-
-# Process file 
-
-
+pass 

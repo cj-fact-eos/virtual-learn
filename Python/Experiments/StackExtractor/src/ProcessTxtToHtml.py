@@ -1,4 +1,4 @@
-from HtmlProcessor import create_html
+from HtmlProcessor import create_html, create_pdf
 from QuestionQuery import QuestionFormat
 import re
 
@@ -173,7 +173,8 @@ def format_answer(answer):
     return formatted_answer
 
 
-fileName_path = f"outputDir/angular_133627.txt"
-question_List = ProcessTxtToQuestionAnswerListV2(fileName_path)
-formatted_div = convert_to_formatted_divs(question_List)
-create_html('angular', formatted_div, 'angular_133627')
+# fileName_path = f"outputDir/angular_133627.txt"
+# question_List = ProcessTxtToQuestionAnswerListV2(fileName_path)
+# formatted_div = convert_to_formatted_divs(question_List)
+# htmlPath = create_html('angular', formatted_div, 'angular_133627')
+# create_pdf(htmlPath, "angular")

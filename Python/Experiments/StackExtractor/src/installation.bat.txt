@@ -7,5 +7,6 @@ pip install python-dotenv
 pip install jupyter
 pip install -q -U google-generativeai
 pip install pycurl
+pip install xhtml2pdf
 
 
