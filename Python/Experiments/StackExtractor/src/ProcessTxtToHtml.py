@@ -88,7 +88,13 @@ def convert_to_formatted_divs(question_answers):
         formatted_div = '<div>'
         if(q_ans.Question):
             if re.search('<script>', q_ans.Question.strip()):
-                question = q_ans.Question.replace('<script>', '&lt;script&gt;')
+                if re.search('<script>', q_ans.Question.strip()): 
+                    question = q_ans.Question.replace('<script>', '&lt;script&gt;')
+                    pass
+                if re.search('<object>', q_ans.Question.strip()):                          
+                    question = question.replace('<object>', '&lt;object&gt;')
+                    pass 
+                
                 formatted_div = formatted_div + f"<h2>{q_ans.QuestionNo}: {question}</h2>"
                 continue 
             formatted_div = formatted_div + f"<h2>{q_ans.QuestionNo}: {q_ans.Question}</h2>"
@@ -129,6 +135,9 @@ def format_answer(answer):
     for index, answer_line in enumerate(answer_lines):
         if re.search('<script>', answer_line.strip()):
             answer_line = answer_line.replace('<script>', '&lt;script&gt;')
+            pass
+        if   re.search('<object>', answer_line.strip()):                          
+            answer_line = answer_line.replace('<object>', '&lt;object&gt;')
             pass
         if answer_line == '':
             if add_ul != 0:
@@ -173,8 +182,8 @@ def format_answer(answer):
     return formatted_answer
 
 
-# fileName_path = f"outputDir/angular_133627.txt"
-# question_List = ProcessTxtToQuestionAnswerListV2(fileName_path)
-# formatted_div = convert_to_formatted_divs(question_List)
-# htmlPath = create_html('angular', formatted_div, 'angular_133627')
-# create_pdf(htmlPath, "angular")
+fileName_path = f"outputDir/c_185314.txt"
+question_List = ProcessTxtToQuestionAnswerListV2(fileName_path)
+formatted_div = convert_to_formatted_divs(question_List)
+htmlPath = create_html('csharp', formatted_div, 'c_185314')
+create_pdf(htmlPath, "csharp")
