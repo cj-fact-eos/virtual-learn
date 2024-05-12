@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
 import os
-from ProcessTxtToHtml import ProcessTxtToQuestionAnswerList
+from HtmlProcessor import create_html
+from ProcessTxtToHtml import ProcessTxtToQuestionAnswerListV2, convert_to_formatted_divs
 from QueryGoogleApi import query_google_api
 from QueryGoogleApi import extract_text_from_response
 import QuestionScrapper
@@ -21,6 +22,7 @@ print('e.g. https://www.fullstack.cafe/interview-questions/strings')
 url = input("Enter or paste the url and wait for some time:  ")
 if url:
     pdf_txt_fileName = Utils.extract_the_last_path(url)
+    title = pdf_txt_fileName
     current_time = datetime.datetime.now()
     time_string = current_time.strftime("%H%M%S")
     if  pdf_txt_fileName == '':
@@ -55,13 +57,15 @@ if url:
             Utils.save_to_file(f"outputDir/{index}_{ datetime.datetime.now().strftime("%H%M%S")}",
                             extract_output)
             output = output + "\n\n" + extract_output
-            print( Utils.word_calculator(output))
+            #print( Utils.word_calculator(output))
             index += 1
 
         fileName_path = f"outputDir/{pdf_txt_fileName}.txt"
         Utils.save_to_file(fileName_path, output)
 
-        question_answers = ProcessTxtToQuestionAnswerList(fileName_path)
+        question_answers = ProcessTxtToQuestionAnswerListV2(fileName_path)
+        formatted_div = convert_to_formatted_divs(question_answers)
+        create_html(title, formatted_div, pdf_txt_fileName)
     pass
 pass
 

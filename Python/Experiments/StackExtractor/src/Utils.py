@@ -37,3 +37,16 @@ def extract_the_last_path(url):
     except:  # Catch specific or general exception types
         # Code to handle the exception
         return ''
+
+def replace_only_leading_space(text):
+    """Replaces only leading spaces with non-breaking spaces.
+
+    Args:
+        text: The string to process.
+
+    Returns:
+        A new string with leading spaces replaced by "&nbsp;".
+    """
+    # Find the index of the first non-whitespace character
+    first_char = next((i for i, char in enumerate(text) if not char.isspace()), len(text))
+    return text[:first_char].replace(" ", "&nbsp;") + text[first_char:]

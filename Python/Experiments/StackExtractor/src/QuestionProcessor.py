@@ -23,7 +23,7 @@ def generate_list_of_question_set(questionnaires):
         string_of_questions =  string_of_questions + create_query_question
         
         question_set.append(create_query_question) 
-        if Utils.word_calculator(string_of_questions) > 100:
+        if Utils.word_calculator(string_of_questions) > 50:
             list_of_question_set.append(question_set)
             question_set = []
             string_of_questions = ''
