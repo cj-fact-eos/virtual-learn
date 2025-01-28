@@ -1,9 +1,19 @@
 <script lang="ts">
     import { Button } from '$lib/components/ui/button/index.js'
+    
+    // Legacy Mode
+    // let count = 0;
+    
+    // Runes Mode
+    let count = $state(0)
+
+    function increment(){
+        count++;
+    }
 </script>
 
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<div>
+    {count}
+</div>
 
-
-<Button onclick={() => alert('I have been clicked')}>Please check me</Button>
+<Button onclick={increment}>Please click me</Button>
