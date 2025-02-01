@@ -15,16 +15,13 @@
             count--;
         }
     }
-   
 </script>
 
 <div class="container">
     <div class="shadow rounded bg-gray-900 px-6 py-2 text-2xl text-white">
         {count}
     </div>
-
     <br/>
-
     <input class="shadow rounded bg-gray-900 px-6 py-2 text-2xl text-white" type="number" bind:value={count} disabled />
     
     <Button class="shadow rounded bg-gray-900 px-6 py-2 text-2xl text-white" onclick={() => count++}>Increase</Button>
