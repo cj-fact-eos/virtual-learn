@@ -1,5 +1,4 @@
-<script lang="ts">
-	import '../tailwind.css'
+<script lang="ts">	
 	import '../app.css';
 	let { children } = $props();
 </script>
